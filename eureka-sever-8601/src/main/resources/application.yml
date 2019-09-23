@@ -1,0 +1,16 @@
+server:
+  port: 8601
+spring:
+  application:
+    name: eureka-server-8601
+eureka:
+  instance:
+    hostname: server
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  server:
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 1000
+    renewal-percent-threshold: 0.9
+

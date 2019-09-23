@@ -1,0 +1,17 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: service-8081
+eureka:
+  instance:
+    hostname: client
+    lease-expiration-duration-in-seconds: 1
+  server:
+    hostname: server
+    port: 8601
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.server.hostname}:${eureka.server.port}/eureka/
