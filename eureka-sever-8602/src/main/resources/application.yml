@@ -1,8 +1,8 @@
 server:
-  port: 8601
+  port: 8602
 spring:
   application:
-    name: eureka-server-8601
+    name: eureka-server-8602
 eureka:
   instance:
     hostname-server1: server1
@@ -14,7 +14,7 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 15
     metadata-map:
-      zone: zone1
+      zone: zone2
   client:
     fetch-registry: true
     register-with-eureka: true

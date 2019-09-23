@@ -6,12 +6,25 @@ spring:
 eureka:
   instance:
     hostname: client
-    lease-expiration-duration-in-seconds: 1
+    lease-expiration-duration-in-seconds: 15
+    lease-renewal-interval-in-seconds: 5
+    metadata-map:
+      zone: zone1
   server:
-    hostname: server
-    port: 8601
+    hostname-server1: server1
+    server1-port1: 8601
+    hostname-server2: server2
+    server1-port2: 8602
   client:
     register-with-eureka: true
     fetch-registry: true
+    registry-fetch-interval-seconds: 15
+    prefer-same-zone-eureka: true
+    region: region-east
+    availability-zones:
+      region-east: zone1,zone2
     service-url:
-      defaultZone: http://${eureka.server.hostname}:${eureka.server.port}/eureka/
+      zone1: http://${eureka.server.hostname-server1}:${eureka.server.server1-port1}/eureka/
+      zone2: http://${eureka.server.hostname-server2}:${eureka.server.server2-port2}/eureka/
+
+

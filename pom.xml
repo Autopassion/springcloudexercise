@@ -15,7 +15,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>eureka-sever-8601</module>
+        <module>eureka-sever-8602</module>
+        <module>eureka-sever-8603</module>
         <module>service-8081</module>
+        <module>zuul-8701</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
