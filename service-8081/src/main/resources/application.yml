@@ -6,7 +6,7 @@ spring:
 eureka:
   instance:
     hostname: client
-    lease-expiration-duration-in-seconds: 1
+    lease-expiration-duration-in-seconds: 60
   server:
     hostname: server
     port: 8601
