@@ -1,12 +1,12 @@
 server:
-  port: 8081
+  port: 8082
 spring:
   application:
     name: service-8081
 eureka:
   instance:
     hostname: client
-    instance-id: service-8082
+    instance-id: service-8081
     lease-expiration-duration-in-seconds: 15
     lease-renewal-interval-in-seconds: 5
     metadata-map:
@@ -16,8 +16,8 @@ eureka:
     server1-port1: 8601
     hostname-server2: server2
     server2-port2: 8602
-    hostname-server3: server2
-    server3-port3: 8602
+    hostname-server3: server3
+    server3-port3: 8603
   client:
     register-with-eureka: true
     fetch-registry: true
@@ -25,17 +25,10 @@ eureka:
     prefer-same-zone-eureka: true
     region: region-east
     availability-zones:
-      region-east: zone1,zone2
+      region-east: zone1,zone2,zone3
     service-url:
       zone1: http://${eureka.server.hostname-server1}:${eureka.server.server1-port1}/eureka/
       zone2: http://${eureka.server.hostname-server2}:${eureka.server.server2-port2}/eureka/
+      zone3: http://${eureka.server.hostname-server3}:${eureka.server.server3-port3}/eureka/
 
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMilliseconds: 90000
-          strategy: SEMAPHORE
 

@@ -1,12 +1,12 @@
 server:
-  port: 8081
+  port: 8701
 spring:
   application:
-    name: service-8081
+    name: zuul-8701
+
 eureka:
   instance:
     hostname: client
-    instance-id: service-8082
     lease-expiration-duration-in-seconds: 15
     lease-renewal-interval-in-seconds: 5
     metadata-map:
@@ -25,10 +25,27 @@ eureka:
     prefer-same-zone-eureka: true
     region: region-east
     availability-zones:
-      region-east: zone1,zone2
+      region-east: zone1,zone2,zone3
     service-url:
       zone1: http://${eureka.server.hostname-server1}:${eureka.server.server1-port1}/eureka/
       zone2: http://${eureka.server.hostname-server2}:${eureka.server.server2-port2}/eureka/
+      zone3: http://${eureka.server.hostname-server3}:${eureka.server.server3-port3}/eureka/
+
+zuul:
+  routes:
+    service-8081:
+      path: /service-8081/**
+      serviceId: service-8081
+    service-8082:
+      path: /service-8082/**
+      serviceId: service-8082
+  retryable: true
+
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 15000
+  MaxAutoRetries: 2
+  MaxAutoRetriesNextServer: 0
 
 hystrix:
   command:
@@ -38,4 +55,3 @@ hystrix:
           thread:
             timeoutInMilliseconds: 90000
           strategy: SEMAPHORE
-
