@@ -1,8 +1,8 @@
 server:
-  port: 8601
+  port: 8603
 spring:
   application:
-    name: eureka-server-8601
+    name: eureka-server-8603
 eureka:
   instance:
     hostname-server1: server1
@@ -14,18 +14,19 @@ eureka:
     lease-renewal-interval-in-seconds: 5
     lease-expiration-duration-in-seconds: 15
     metadata-map:
-      zone: zone1
+      zone: zone3
   client:
     fetch-registry: true
     register-with-eureka: true
     region: region-east
     service-url:
-      zone1: http://${eureka.instance.hostname-server1}:${eureka.instance.server1-port}/eureka/
+      zone1: http://${eureka.instance.hostname-server1}:${eureka.instance.server2-port}/eureka/
       zone2: http://${eureka.instance.hostname-server2}:${eureka.instance.server2-port}/eureka/
       zone3: http://${eureka.instance.hostname-server3}:${eureka.instance.server3-port}/eureka/
     availability-zones:
       region-east: zone1,zone2,zone3
   server:
     enable-self-preservation: false
-    eviction-interval-timer-in-ms: 60000
-
+    eviction-interval-timer-in-ms: 5000
+    renewal-percent-threshold: 0.9
+    response-cache-update-interval-ms: 3000
